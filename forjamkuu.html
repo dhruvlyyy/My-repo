@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love Nirali</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+        }
+        .love-button {
+            background: #ff6f61;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .love-button:hover {
+            background: #ff5a4e;
+        }
+        .hidden-message {
+            display: none;
+            font-size: 2em;
+            margin-top: 20px;
+            animation: fadeIn 2s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+            display: none;
+            animation: slideIn 2s forwards;
+        }
+        .slide {
+            display: none;
+        }
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            .love-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>For My Love, Nirali</h1>
+    <p>Click the button below to see how much I love you!</p>
+    <button class="love-button" onclick="showContent()">Click Me!</button>
+    <div class="hidden-message" id="loveMessage">I love you more than words can say, Nirali! ❤️</div>
+    <div class="slideshow-container" id="slideshow">
+        <div class="slide">
+            <img src="https://via.placeholder.com/800x400.png?text=Picture+1" alt="Picture 1">
+        </div>
+        <div class="slide">
+            <img src="https://via.placeholder.com/800x400.png?text=Picture+2" alt="Picture 2">
+        </div>
+        <div class="slide">
+            <img src="https://via.placeholder.com/800x400.png?text=Picture+3" alt="Picture 3">
+        </div>
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+    <audio id="backgroundMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        let currentSlide = 0;
+        
+        function showContent() {
+            document.getElementById('loveMessage').style.display = 'block';
+            document.getElementById('slideshow').style.display = 'block';
+            document.getElementById('backgroundMusic').play();
+            showSlides(currentSlide);
+        }
+        
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[n].style.display = "block";
+        }
+        
+        function changeSlide(n) {
+            let slides = document.getElementsByClassName("slide");
+            currentSlide += n;
+            if (currentSlide >= slides.length) { currentSlide = 0; }
+            if (currentSlide < 0) { currentSlide = slides.length - 1; }
+            showSlides(currentSlide);
+        }
+    </script>
+</body>
+</html>
